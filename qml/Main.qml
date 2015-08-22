@@ -52,6 +52,13 @@ GameWindow {
             x: 160
             y: 180
         }
+
+        Pipe {
+            id: pipe1
+            x: 400
+            y: 30 + Math.random()*200
+        }
+
         MouseArea {
             anchors.fill: scene.gameWindowAnchorItem
             onPressed: {
