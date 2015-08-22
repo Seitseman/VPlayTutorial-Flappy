@@ -20,4 +20,9 @@ EntityBase {
             source: "../assets/img/landSprite.png"
         }
     }
+
+    BoxCollider {
+        anchors.fill: parent
+        bodyType: Body.Static
+    }
 }

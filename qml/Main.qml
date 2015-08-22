@@ -20,12 +20,18 @@ GameWindow {
     width: 960
     height: 640
 
+    EntityManager {
+        id: entityManager
+        entityContainer: scene
+    }
+
     Scene {
         id: scene
         sceneAlignmentY: "bottom"
 
         PhysicsWorld {
             debugDrawVisible: true
+            gravity.y: -27
         }
 
         Image {
@@ -36,8 +42,8 @@ GameWindow {
         }
 
         Ground {
-            anchors.bottom: scene.gameWindowAnchorItem.bottom
             anchors.horizontalCenter: scene.horizontalCenter
+            anchors.bottom: scene.gameWindowAnchorItem.bottom
         }
 
         Player {

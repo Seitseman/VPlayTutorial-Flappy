@@ -23,5 +23,10 @@ EntityBase {
         id: collider
         radius: 13
     }
+
+    function push() {
+        collider.body.linearVelocity = Qt.point(0,0)
+        var localForwardVector = collider.body.getWorldVector(Qt.point(0,-200))
+    }
 }
 
