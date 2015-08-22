@@ -23,5 +23,36 @@ EntityBase {
         anchors.bottom: pipe.top
         anchors.horizontalCenter: pipe.horizontalCenter
     }
+
+    MovementAnimation {
+        id: movement
+        target: pipe
+        property: "x"
+        minPropertyValue: -80
+        velocity: -120
+        running: true
+        onLimitReached: {
+            pipe.x = 400
+            pipe.y = 30 + Math.random()*200
+        }
+    }
+
+    BoxCollider {
+        anchors.fill: pipe
+        bodyType: Body.Static
+        collisionTestingOnlyMode: true
+    }
+
+    BoxCollider {
+        anchors.fill: lowerPipe
+        bodyType: Body.Static
+        collisionTestingOnlyMode: true
+    }
+
+    BoxCollider {
+        anchors.fill: upperPipe
+        bodyType: Body.Static
+        collisionTestingOnlyMode: true
+    }
 }
 
