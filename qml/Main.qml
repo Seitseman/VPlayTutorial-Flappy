@@ -32,6 +32,7 @@ GameWindow {
         PhysicsWorld {
             debugDrawVisible: true
             gravity.y: -27
+            z: 10
         }
 
         Image {
@@ -51,6 +52,13 @@ GameWindow {
             x: 160
             y: 180
         }
+        MouseArea {
+            anchors.fill: scene.gameWindowAnchorItem
+            onPressed: {
+                player.push()
+            }
+        }
     }
+
 }
 

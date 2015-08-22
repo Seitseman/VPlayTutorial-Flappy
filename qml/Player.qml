@@ -5,6 +5,7 @@ import VPlay 2.0
 EntityBase {
     id: player
     entityType: "player"
+    rotation: collider.linearVelocity.y/10
 
     SpriteSequenceVPlay {
         id: bird
@@ -19,6 +20,7 @@ EntityBase {
         }
     }
 
+
     CircleCollider {
         id: collider
         radius: 13
@@ -27,6 +29,7 @@ EntityBase {
     function push() {
         collider.body.linearVelocity = Qt.point(0,0)
         var localForwardVector = collider.body.getWorldVector(Qt.point(0,-200))
+        collider.body.applyLinearImpulse(localForwardVector, collider.body.getWorldCenter())
     }
 }
 
