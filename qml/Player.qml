@@ -10,6 +10,7 @@ EntityBase {
     SpriteSequenceVPlay {
         id: bird
         anchors.centerIn: parent
+        running: scene.gameState !== "gameOver"
 
         SpriteVPlay {
             frameCount: 1

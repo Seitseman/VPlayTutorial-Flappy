@@ -29,9 +29,12 @@ GameWindow {
         id: scene
         sceneAlignmentY: "bottom"
 
+        property string gameState: "wait"
+        property int score: 0
+
         PhysicsWorld {
             debugDrawVisible: true
-            gravity.y: -27
+            gravity.y: scene.gameState !== "wait" ? -27 : 0
             z: 10
         }
 
@@ -65,11 +68,46 @@ GameWindow {
             y: 30 + Math.random() * 200
         }
 
+        Text {
+            id: scoreText
+            text: scene.score
+            color: "white"
+            anchors.horizontalCenter: scene.horizontalCenter
+            y: 30
+            font.pixelSize: 30
+        }
+
         MouseArea {
             anchors.fill: scene.gameWindowAnchorItem
             onPressed: {
-                player.push()
+                if (scene.gameState === "wait") {
+                    scene.startGame()
+                    player.push()
+                } else if (scene.gameState === "play") {
+                    player.push()
+                } else if (scene.gameState === "gameOver") {
+                    scene.reset()
+                }
             }
+        }
+
+        function startGame() {
+            scene.gameState = "play"
+        }
+
+        function stopGame() {
+            scene.gameState = "gameOver"
+        }
+
+        function reset() {
+            scene.gameState = "wait"
+            pipe1.x = 400
+            pipe1.y = 30 + Math.random()*200
+            pipe2.x = 640
+            pipe2.y = 30 + Math.random()*200
+            player.x = 160
+            player.y = 180
+            scene.score = 0
         }
     }
 

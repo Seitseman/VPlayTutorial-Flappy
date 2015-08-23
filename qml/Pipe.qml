@@ -30,7 +30,7 @@ EntityBase {
         property: "x"
         minPropertyValue: -80
         velocity: -120
-        running: true
+        running: scene.gameState !== "gameOver"
         onLimitReached: {
             pipe.x = 400
             pipe.y = 30 + Math.random()*200
@@ -41,18 +41,27 @@ EntityBase {
         anchors.fill: pipe
         bodyType: Body.Static
         collisionTestingOnlyMode: true
+        fixture.onBeginContact: {
+            scene.score++
+        }
     }
 
     BoxCollider {
         anchors.fill: lowerPipe
         bodyType: Body.Static
         collisionTestingOnlyMode: true
+        fixture.onBeginContact: {
+            scene.stopGame()
+        }
     }
 
     BoxCollider {
         anchors.fill: upperPipe
         bodyType: Body.Static
         collisionTestingOnlyMode: true
+        fixture.onBeginContact: {
+            scene.stopGame()
+        }
     }
 }
 
